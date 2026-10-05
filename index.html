@@ -1,0 +1,552 @@
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tanhaaz Kouser | Portfolio</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+    :root {
+      --maroon: #6d0f2b;
+      --deep-maroon: #360817;
+      --rose: #b83b5e;
+      --cream: #fff8f4;
+      --soft-pink: #f9e7eb;
+      --text: #30151f;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 20%, #f7dce4 0, transparent 25%),
+        radial-gradient(circle at 90% 80%, #ead0d8 0, transparent 25%),
+        var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* Floating petals */
+    .petal {
+      position: fixed;
+      top: -30px;
+      color: #a51f48;
+      font-size: 18px;
+      opacity: 0.25;
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .petal:nth-child(1) { left: 8%; animation-duration: 9s; }
+    .petal:nth-child(2) { left: 27%; animation-duration: 12s; animation-delay: 2s; }
+    .petal:nth-child(3) { left: 52%; animation-duration: 10s; animation-delay: 4s; }
+    .petal:nth-child(4) { left: 76%; animation-duration: 13s; animation-delay: 1s; }
+    .petal:nth-child(5) { left: 92%; animation-duration: 11s; animation-delay: 5s; }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(90%, 900px);
+      padding: 14px 24px;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(109,15,43,0.12);
+      border-radius: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      box-shadow: 0 10px 35px rgba(75, 12, 32, 0.12);
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--maroon);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--rose);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 20px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .flower {
+      font-size: 45px;
+      animation: pulse 3s infinite ease-in-out;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    @keyframes pulse {
+      50% {
+        transform: scale(1.12) rotate(5deg);
+      }
+    }
+
+    .hello {
+      color: var(--rose);
+      font-size: 15px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(55px, 10vw, 105px);
+      line-height: 0.95;
+      color: var(--deep-maroon);
+      margin-bottom: 25px;
+    }
+
+    h1 span {
+      color: var(--maroon);
+      font-style: italic;
+    }
+
+    .tagline {
+      max-width: 620px;
+      margin: auto;
+      font-size: 17px;
+      line-height: 1.9;
+      color: #704653;
+    }
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 25px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .primary {
+      color: white;
+      background: var(--maroon);
+      box-shadow: 0 8px 25px rgba(109,15,43,0.25);
+    }
+
+    .secondary {
+      color: var(--maroon);
+      border: 1px solid var(--maroon);
+      background: rgba(255,255,255,0.5);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Sections */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 90px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      color: var(--deep-maroon);
+      font-size: 42px;
+      margin-bottom: 50px;
+    }
+
+    /* About */
+    .about-card {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(109,15,43,0.1);
+      border-radius: 30px;
+      padding: 45px;
+      box-shadow: 0 20px 50px rgba(75,12,32,0.08);
+      text-align: center;
+    }
+
+    .about-card p {
+      line-height: 2;
+      color: #68414d;
+      font-size: 16px;
+    }
+
+    .highlight {
+      color: var(--maroon);
+      font-weight: 600;
+    }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      padding: 35px 25px;
+      text-align: center;
+      background: rgba(255,255,255,0.72);
+      border-radius: 25px;
+      border: 1px solid rgba(109,15,43,0.08);
+      transition: 0.35s;
+      box-shadow: 0 15px 35px rgba(75,12,32,0.07);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      background: white;
+      box-shadow: 0 20px 45px rgba(109,15,43,0.15);
+    }
+
+    .card-icon {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      color: var(--maroon);
+      margin-bottom: 10px;
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+    }
+
+    .card p {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #76545f;
+    }
+
+    /* Quote */
+    .quote {
+      text-align: center;
+      padding: 80px 20px;
+      background: var(--deep-maroon);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote::before,
+    .quote::after {
+      content: "✿";
+      position: absolute;
+      font-size: 150px;
+      color: rgba(255,255,255,0.04);
+    }
+
+    .quote::before {
+      left: -20px;
+      top: -50px;
+    }
+
+    .quote::after {
+      right: -20px;
+      bottom: -60px;
+    }
+
+    .quote p {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(25px, 4vw, 40px);
+      font-style: italic;
+      max-width: 750px;
+      margin: auto;
+      line-height: 1.5;
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+    }
+
+    .contact p {
+      color: #76545f;
+      margin-bottom: 25px;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      padding: 10px 18px;
+      border-radius: 30px;
+      background: var(--soft-pink);
+      color: var(--maroon);
+      text-decoration: none;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .social:hover {
+      background: var(--maroon);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #25050f;
+      color: #dcb9c4;
+      font-size: 12px;
+    }
+
+    /* Mobile */
+    @media (max-width: 700px) {
+      nav {
+        padding: 12px 17px;
+      }
+
+      nav ul {
+        gap: 10px;
+      }
+
+      nav a {
+        font-size: 11px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .about-card {
+        padding: 30px 22px;
+      }
+
+      section {
+        padding: 65px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating flowers -->
+  <div class="petal">✿</div>
+  <div class="petal">❀</div>
+  <div class="petal">✿</div>
+  <div class="petal">❀</div>
+  <div class="petal">✿</div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">TK.</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#vibe">My Vibe</a></li>
+      <li><a href="#contact">Connect</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero" id="home">
+    <div class="hero-content">
+      <div class="flower">🌹</div>
+
+      <div class="hello">Hello, I'm</div>
+
+      <h1>
+        Tanhaaz <span>Kouser</span>
+      </h1>
+
+      <p class="tagline">
+        A Computer Science student who finds beauty in quiet moments,
+        blooming flowers, peaceful nature and the little things that make
+        life beautiful.
+      </p>
+
+      <div class="buttons">
+        <a href="#about" class="btn primary">Discover My World ✨</a>
+        <a href="#contact" class="btn secondary">Say Hello ♡</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">A Little About Me</h2>
+
+      <div class="about-card">
+        <p>
+          I'm <span class="highlight">Tanhaaz Kouser</span>, currently pursuing
+          my <span class="highlight">B.E. in Computer Science</span>.
+          I love the world of technology, but my heart also belongs to
+          quiet places, flowers and nature.
+          <br><br>
+          I'm someone who enjoys my own company. Being alone isn't loneliness
+          for me — it's where I recharge, think, dream and discover new ideas.
+          My personality is a blend of <span class="highlight">curiosity,
+          calmness, creativity and a little mystery.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vibe -->
+  <section id="vibe">
+    <div class="container">
+      <h2 class="section-title">My Little Universe</h2>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-icon">💻</div>
+          <h3>Code & Create</h3>
+          <p>
+            Exploring Computer Science, learning new technologies and
+            turning ideas into something meaningful.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🌷</div>
+          <h3>Flowers & Bloom</h3>
+          <p>
+            Flowers remind me that growth doesn't have to be loud.
+            Sometimes the most beautiful things bloom quietly.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🌿</div>
+          <h3>Nature & Peace</h3>
+          <p>
+            Nature is my favorite escape — a place where everything feels
+            slower, softer and a little more beautiful.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🌙</div>
+          <h3>My Own Space</h3>
+          <p>
+            I enjoy solitude, peaceful thoughts and those beautiful moments
+            when I can simply be myself.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🍷</div>
+          <h3>Maroon Mood</h3>
+          <p>
+            Elegant, deep and timeless — maroon isn't just a colour,
+            it's a whole personality.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">✨</div>
+          <h3>Quietly Unique</h3>
+          <p>
+            I don't need to be the loudest person in the room.
+            I prefer leaving a little mystery behind.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="quote">
+    <p>
+      “She blooms quietly, dreams deeply,
+      and carries an entire universe within her.”
+    </p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container contact">
+      <h2 class="section-title">Let's Connect</h2>
+
+      <p>
+        Somewhere between code, flowers and quiet moments —
+        that's where you'll find me. 🌹
+      </p>
+
+      <div class="socials">
+        <a href="#" class="social">Instagram</a>
+        <a href="#" class="social">LinkedIn</a>
+        <a href="#" class="social">GitHub</a>
+        <a href="#" class="social">Email</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Made with ♡ by Tanhaaz Kouser · 2026
+  </footer>
+
+</body>
+</html>
+```
